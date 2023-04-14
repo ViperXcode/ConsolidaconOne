@@ -54,6 +54,29 @@ p{
     background-color:palegreen
 }
 
+.Tarjeta-Rookie:hover{
+    background-color:burlywood;
+}
+.Tarjeta-Champion:hover{
+    background-color:grey
+}
+.Tarjeta-Ultimate:hover{
+    background-color:cadetblue
+}
+.Tarjeta-Fresh:hover{
+    background-color:darkcyan
+}
+.Tarjeta-Mega:hover{
+    background-color:darkorchid
+}
+.Tarjeta-Armor:hover{
+    background-color:honeydew
+}
+.Tarjeta-In-Training:hover{
+    background-color:darkorange
+}
+
+
 .imgdig{
 
     width: 200px;

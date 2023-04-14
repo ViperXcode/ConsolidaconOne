@@ -12,6 +12,20 @@ async function getdata (){
         var promise= await fetch("https://digimon-api.vercel.app/api/digimon/");
         var resultado= await promise.json();
         console.log(resultado)
+        var levels=[]
+             
+        resultado.forEach(function (digimon){
+            if (levels.length==0){
+                levels.push(digimon.level)
+            }
+
+            if (levels.includes(digimon.level)==false){
+                levels.push(digimon.level)
+            }
+
+        })
+        console.log(levels)
+
         htmlInjection(resultado)
     }catch(error){
         console.log(error)
@@ -24,21 +38,54 @@ getdata();
 /*
 */
 
+function getBodycard(digimon){
+
+    var cuerpotarjeta=`
+
+    <div class="Tarjeta-body">
+        <img class="imagensize" src="assets/img/logo.png"  alt="">
+        <h3>D i g i m o n   C a r d s</h3>
+        <img class="imgdig" src="${digimon.img}" alt="">
+        <h2>${digimon.name}</h2>
+        <p>"Nivel ${digimon.level}"</p>
+    </div>
+</div>
+`
+return cuerpotarjeta
+}
+
+
 function htmlInjection(data){
     elemento.innerHTML=""
+
     for(digimon of data) {
-        elemento.innerHTML +=
-            
-            `           <div class="Tarjeta">
-                                <div class="Tarjeta-body">
-                                    <img class="imagensize" src="assets/img/logo.png"  alt="">
-                                    <h3>D i g i m o n   C a r d s</h3>
-                                    <img class="imgdig" src="${digimon.img}" alt="">
-                                    <h2>${digimon.name}</h2>
-                                    <p>"Nivel ${digimon.level}"</p>
-                                </div>
-                        </div>
-            `
+        console.log(elemento);
+        if (digimon.level=="Training"){
+            elemento.innerHTML += ` <div class="Tarjeta"> ` +getBodycard(digimon) 
+        }
+         else if (digimon.level=="Rookie"){
+            elemento.innerHTML +=`<div class="Tarjeta Tarjeta-Rookie">` +getBodycard(digimon)       
+        }
+        else if (digimon.level=="Champion"){
+            elemento.innerHTML +=`<div class="Tarjeta Tarjeta-Champion">` +getBodycard(digimon)       
+        }
+        else if (digimon.level=="Ultimate"){
+            elemento.innerHTML +=`<div class="Tarjeta Tarjeta-Ultimate">` +getBodycard(digimon)       
+        }
+        else if (digimon.level=="Fresh"){
+            elemento.innerHTML +=`<div class="Tarjeta Tarjeta-Fresh">` +getBodycard(digimon)       
+        }
+        else if (digimon.level=="Mega"){
+            elemento.innerHTML +=`<div class="Tarjeta Tarjeta-Mega">` +getBodycard(digimon)       
+        }
+        else if (digimon.level=="Armor"){
+            elemento.innerHTML +=`<div class="Tarjeta Tarjeta-Armor">` +getBodycard(digimon)       
+        }
+        else if (digimon.level=="In Training"){
+            elemento.innerHTML +=`<div class="Tarjeta Tarjeta-In-Training">` +getBodycard(digimon)       
+        }
+        
+        
     }
 }
 
